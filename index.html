@@ -392,6 +392,174 @@
         }
 
         /* ═══════════════════════════════════════════════
+           DASHBOARD PREVIEW CARD
+        ═══════════════════════════════════════════════ */
+        .dashboard-preview {
+            width: 100%;
+            background: var(--bg2);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(15, 102, 255, 0.1);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dashboard-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .dashboard-status {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 12px;
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .metrics-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .metric-card {
+            background: var(--bg3);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value-green { color: #16a34a; }
+        .value-orange { color: #ea580c; }
+        .value-blue { color: #0F66FF; }
+        .value-red { color: #dc2626; }
+
+        .risks-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .risks-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .risk-item {
+            background: var(--bg3);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 12px;
+        }
+
+        .risk-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 700;
+            font-size: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .risk-high { background: #dc2626; }
+        .risk-medium { background: #ea580c; }
+        .risk-low { background: #16a34a; }
+
+        .risk-text {
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .progress-bars {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .progress-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--blue);
+            border-radius: 3px;
+        }
+
+        /* ═══════════════════════════════════════════════
            RESPONSIVE
         ═══════════════════════════════════════════════ */
         @media (max-width: 768px) {
@@ -413,6 +581,14 @@
 
             .section-title {
                 font-size: 28px;
+            }
+
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-row {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -446,7 +622,109 @@
             <button class="btn btn-secondary">Watch Demo (2 min)</button>
         </div>
         <div class="hero-visual">
-            📊 Dashboard Preview Coming Soon
+            <div class="dashboard-preview">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">📊 Live Dashboard Preview</div>
+                    <div class="dashboard-status">
+                        <span class="status-dot"></span>
+                        Real-time Analysis
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <!-- LEFT SIDE: METRICS -->
+                    <div class="metrics-section">
+                        <div class="metric-row">
+                            <div class="metric-card">
+                                <div class="metric-value value-blue">0.89</div>
+                                <div class="metric-label">CPI</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value value-green">1.04</div>
+                                <div class="metric-label">TCPI</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value value-orange">0.42</div>
+                                <div class="metric-label">SPI</div>
+                            </div>
+                        </div>
+
+                        <div class="metric-row">
+                            <div class="metric-card">
+                                <div class="metric-value value-orange">68%</div>
+                                <div class="metric-label">Health Score</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value value-red">−$373K</div>
+                                <div class="metric-label">VAC</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value value-blue">Apr 2026</div>
+                                <div class="metric-label">EAC Date</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bars">
+                            <div class="progress-row">
+                                <div class="progress-label">
+                                    <span>Budget Status</span>
+                                    <span style="color: #0F66FF; font-weight: 700;">$3.3M / $13.8M</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 24%;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-row">
+                                <div class="progress-label">
+                                    <span>Schedule Complete</span>
+                                    <span style="color: #ea580c; font-weight: 700;">21.2%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 21%; background: #ea580c;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-row">
+                                <div class="progress-label">
+                                    <span>Earned Value</span>
+                                    <span style="color: #16a34a; font-weight: 700;">$2.9M</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 21%; background: #16a34a;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE: RISKS -->
+                    <div class="risks-section">
+                        <div class="risks-title">🚨 Active Risks (Auto-Detected)</div>
+                        
+                        <div class="risk-item">
+                            <span class="risk-badge risk-high">HIGH</span>
+                            <div class="risk-text">3 activities overdue on critical path</div>
+                        </div>
+
+                        <div class="risk-item">
+                            <span class="risk-badge risk-medium">MED</span>
+                            <div class="risk-text">Labour burn rate 94% of budget</div>
+                        </div>
+
+                        <div class="risk-item">
+                            <span class="risk-badge risk-medium">MED</span>
+                            <div class="risk-text">TCPI 1.04 exceeds 1.10 threshold</div>
+                        </div>
+
+                        <div class="risk-item">
+                            <span class="risk-badge risk-low">LOW</span>
+                            <div class="risk-text">12 activities near-critical (&lt;10d float)</div>
+                        </div>
+
+                        <div style="background: #f0f7ff; border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 12px; color: #0F66FF; font-weight: 600; text-align: center;">
+                            + 8 more risks detected
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

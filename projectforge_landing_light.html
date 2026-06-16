@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectForge — P6 Export to Dashboard in Seconds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F8FAFC;
+            --bg2: #FFFFFF;
+            --bg3: #F1F5F9;
+            --blue: #0F66FF;
+            --blue-dark: #0D4FCC;
+            --teal: #06B6D4;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        html, body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEADER / NAV
+        ═══════════════════════════════════════════════ */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: var(--bg3);
+        }
+
+        /* ═══════════════════════════════════════════════
+           HERO SECTION
+        ═══════════════════════════════════════════════ */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--blue), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-cta .btn {
+            padding: 14px 32px;
+            font-size: 16px;
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, rgba(15, 102, 255, 0.08), rgba(6, 182, 212, 0.08));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 60px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           FEATURES GRID
+        ═══════════════════════════════════════════════ */
+        .features {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(15, 102, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════
+           WHY PROJECTFORGE
+        ═══════════════════════════════════════════════ */
+        .why {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 80px 20px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .why h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .why-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 16px;
+        }
+
+        .why-check {
+            color: var(--teal);
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .why-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .why-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ═══════════════════════════════════════════════
+           TESTIMONIALS
+        ═══════════════════════════════════════════════ */
+        .testimonials {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .stars {
+            color: #F59E0B;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CTA SECTION
+        ═══════════════════════════════════════════════ */
+        .cta {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(15, 102, 255, 0.08), rgba(6, 182, 212, 0.08));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════ */
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">⚙️</span>
+                ProjectForge
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#why">Why ProjectForge</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn btn-secondary">Sign In</button>
+                <button class="btn btn-primary">Start Free</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>From P6 Export to <span class="hero-highlight">Project Intelligence</span> in Seconds</h1>
+        <p>Transform your Primavera P6 data into professional dashboards with instant EVM analysis, risk detection, and executive reports.</p>
+        <div class="hero-cta">
+            <button class="btn btn-primary">Get Started Free</button>
+            <button class="btn btn-secondary">Watch Demo (2 min)</button>
+        </div>
+        <div class="hero-visual">
+            📊 Dashboard Preview Coming Soon
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features">
+        <h2 class="section-title">Powerful Features Built For P6</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>EVM Analysis</h3>
+                <p>Earned Value Management with CPI, SPI, TCPI, and trend analysis. Industry-standard calculations automatically applied.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>DCMA 14-Point Quality</h3>
+                <p>Full schedule quality audit with logic gaps, float anomalies, BEI, and constraint abuse detection built-in.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚠️</div>
+                <h3>Auto Risk Detection</h3>
+                <p>Automatically identifies risks from your schedule: overdue activities, constraint violations, resource conflicts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>S-Curve Analysis</h3>
+                <p>Planned vs Actual S-curves with baseline comparison. Identify schedule creep and performance trends instantly.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📉</div>
+                <h3>Schedule Health Check</h3>
+                <p>Schedule Realism standards compliance. See which production rates are aggressive, normal, or conservative.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📥</div>
+                <h3>Multi-Format Export</h3>
+                <p>Download as HTML, PDF, or Excel. Print-ready reports for executive presentations and stakeholder updates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY PROJECTFORGE -->
+    <section id="why" class="why">
+        <h2>Why Choose ProjectForge?</h2>
+        <div class="why-list">
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Built For P6 Users</h4>
+                    <p>Created by project professionals who understand Primavera workflows and construction KPIs.</p>
+                </div>
+            </div>
+
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Zero Setup Required</h4>
+                    <p>Upload your XER file and get a complete dashboard in seconds. No configuration needed.</p>
+                </div>
+            </div>
+
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Everyone Gets Answers</h4>
+                    <p>PMs, engineers, executives, and schedulers all find insights tailored to their role.</p>
+                </div>
+            </div>
+
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Industry Compliance</h4>
+                    <p>DCMA, EVM, and schedule realism standards built-in. Not an afterthought.</p>
+                </div>
+            </div>
+
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Real-Time Analysis</h4>
+                    <p>Automatic risk scoring, performance tracking, and trend detection on every upload.</p>
+                </div>
+            </div>
+
+            <div class="why-item">
+                <div class="why-check">✓</div>
+                <div>
+                    <h4>Privacy First</h4>
+                    <p>Files auto-delete after 60 minutes. Your data never stored or shared.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <h2 class="section-title">Loved by Project Professionals</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <div class="testimonial-text">"Finally, a tool that speaks P6. Saved us 3 hours every week on report generation."</div>
+                <div class="testimonial-author">Sarah Mitchell</div>
+                <div class="testimonial-role">Senior Project Manager, Infrastructure</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <div class="testimonial-text">"The DCMA analysis caught 12 logic issues we missed. This tool is invaluable for quality control."</div>
+                <div class="testimonial-author">James Chen</div>
+                <div class="testimonial-role">Schedule Analyst, Heavy Construction</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <div class="testimonial-text">"Executives now understand our schedule health in one glance. No more 20-minute explanations."</div>
+                <div class="testimonial-author">Maria Rodriguez</div>
+                <div class="testimonial-role">VP of Operations, Commercial Development</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Ready to Transform Your Project Data?</h2>
+        <p>Join hundreds of professionals using ProjectForge to make better decisions faster.</p>
+        <button class="btn btn-primary" style="padding: 14px 32px; font-size: 16px;">Start Your Free Trial</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 ProjectForge. Built for project professionals, by project professionals.</p>
+        <p style="margin-top: 16px;">
+            <a href="#privacy">Privacy</a> • 
+            <a href="#terms">Terms</a> • 
+            <a href="#contact">Contact</a>
+        </p>
+    </footer>
+</body>
+</html>

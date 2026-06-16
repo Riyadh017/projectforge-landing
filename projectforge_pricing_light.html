@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectForge Pricing — Simple, Transparent Plans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F8FAFC;
+            --bg2: #FFFFFF;
+            --bg3: #F1F5F9;
+            --blue: #0F66FF;
+            --blue-dark: #0D4FCC;
+            --teal: #06B6D4;
+            --green: #22C55E;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        html, body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .pricing-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(15, 102, 255, 0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--blue);
+            box-shadow: 0 0 32px rgba(15, 102, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--teal);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .plan-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            min-height: 40px;
+        }
+
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        .amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .period {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .plan-cta {
+            background: var(--blue);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .plan-cta:hover {
+            background: var(--blue-dark);
+        }
+
+        .plan-features {
+            list-style: none;
+            flex: 1;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            font-size: 14px;
+            display: flex;
+            gap: 12px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .plan-features li:before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .plan-features li.disabled {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .plan-features li.disabled:before {
+            content: "–";
+            color: var(--text-secondary);
+        }
+
+        .coming-soon {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(15, 102, 255, 0.08), rgba(6, 182, 212, 0.08));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 60px 20px;
+            margin-bottom: 80px;
+        }
+
+        .coming-soon h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .coming-soon p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .faq {
+            max-width: 800px;
+            margin: 100px auto 0;
+            padding: 0 20px;
+        }
+
+        .faq h2 {
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .faq-item {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg3);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">⚙️ ProjectForge</div>
+            <ul class="nav-links">
+                <li><a href="projectforge_landing_light.html">Home</a></li>
+                <li><a href="projectforge_features_light.html">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <button class="btn">Start Free</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Pricing coming soon. Currently in beta with free access for all users.</p>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="coming-soon">
+        <h2>🎉 Start Free Today</h2>
+        <p>Try ProjectForge free with up to 2 XER uploads per month. Get full access to all core features—no credit card required.</p>
+        <p style="color: var(--teal); font-weight: 600; margin-top: 16px;">Upgrade to Pro anytime for unlimited uploads and advanced features.</p>
+        <button class="btn" style="padding: 12px 32px; font-size: 16px; margin-top: 24px;">Get Started Free</button>
+    </section>
+
+    <!-- PRICING PLANS (for reference) -->
+    <section id="pricing" class="pricing-section">
+        <h2 style="font-size: 32px; font-weight: 800; text-align: center; margin-bottom: 60px; color: var(--text-primary);">Pricing Plans (Coming Q3 2026)</h2>
+        <div class="pricing-grid">
+            <!-- Free -->
+            <div class="pricing-card">
+                <div class="plan-name">Free</div>
+                <div class="plan-desc">For individuals testing the platform</div>
+                <div class="price">
+                    <span class="amount">$0</span>
+                    <span class="period">forever</span>
+                </div>
+                <button class="plan-cta">Start Now</button>
+                <ul class="plan-features">
+                    <li>2 XER uploads per month</li>
+                    <li>All core features</li>
+                    <li>HTML & PDF export</li>
+                    <li class="disabled">Excel export</li>
+                    <li class="disabled">Priority support</li>
+                </ul>
+            </div>
+
+            <!-- Pro -->
+            <div class="pricing-card featured">
+                <div class="badge">Most Popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-desc">For active project teams</div>
+                <div class="price">
+                    <span class="amount">$29</span>
+                    <span class="period">/month</span>
+                </div>
+                <button class="plan-cta">Start Now</button>
+                <ul class="plan-features">
+                    <li>Unlimited XER uploads</li>
+                    <li>All core features</li>
+                    <li>Excel export</li>
+                    <li>Email support</li>
+                    <li>Advanced reports</li>
+                </ul>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-desc">For large organizations</div>
+                <div class="price">
+                    <span class="amount">Custom</span>
+                </div>
+                <button class="plan-cta">Contact Sales</button>
+                <ul class="plan-features">
+                    <li>Everything in Pro</li>
+                    <li>Team seats</li>
+                    <li>Priority support</li>
+                    <li>API access</li>
+                    <li>Custom integrations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item active">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                <span>What payment methods do you accept?</span>
+                <span>→</span>
+            </div>
+            <div class="faq-answer">
+                We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and wire transfer for enterprise customers.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                <span>Can I cancel anytime?</span>
+                <span>→</span>
+            </div>
+            <div class="faq-answer">
+                Yes. Cancel your subscription anytime with no penalties or lock-in periods. Your access will continue through the end of your billing cycle.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                <span>Is there a free trial?</span>
+                <span>→</span>
+            </div>
+            <div class="faq-answer">
+                Yes. Try ProjectForge free with up to 2 XER uploads per month. Get full access to all core features with no credit card required. Upgrade to Pro anytime for unlimited uploads and advanced features.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                <span>Do you offer discounts for annual billing?</span>
+                <span>→</span>
+            </div>
+            <div class="faq-answer">
+                Yes. Annual plans receive a 20% discount compared to monthly billing. Contact us for more information.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                <span>What if I need more than 2 uploads per month?</span>
+                <span>→</span>
+            </div>
+            <div class="faq-answer">
+                Upgrade to Pro anytime for unlimited XER uploads. Changes take effect immediately and you'll get access to advanced features like Excel export and scheduled reports.
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 ProjectForge. Built for project professionals, by project professionals.</p>
+        <p style="margin-top: 16px;">
+            <a href="#privacy" style="color: var(--blue); text-decoration: none;">Privacy</a> • 
+            <a href="#terms" style="color: var(--blue); text-decoration: none;">Terms</a> • 
+            <a href="#contact" style="color: var(--blue); text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', function() {
+                // Close all others
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                // Open this one
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectForge Features — Complete P6 Dashboard Solution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F8FAFC;
+            --bg2: #FFFFFF;
+            --bg3: #F1F5F9;
+            --blue: #0F66FF;
+            --blue-dark: #0D4FCC;
+            --teal: #06B6D4;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        html, body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .feature-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .feature-section {
+            margin-bottom: 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .feature-section:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature-section:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .feature-content h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .feature-highlight {
+            color: var(--teal);
+        }
+
+        .feature-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .feature-benefits {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-benefits li {
+            padding: 12px 0;
+            display: flex;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-benefits li:before {
+            content: "✓";
+            color: var(--teal);
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .feature-visual {
+            background: linear-gradient(135deg, rgba(15, 102, 255, 0.08), rgba(6, 182, 212, 0.08));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 60px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            text-align: center;
+        }
+
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-section:nth-child(even) {
+                direction: ltr;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">⚙️ ProjectForge</div>
+            <ul class="nav-links">
+                <li><a href="projectforge_landing_light.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="projectforge_pricing_light.html">Pricing</a></li>
+            </ul>
+            <button class="btn">Start Free</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Every Feature You Need for P6 Intelligence</h1>
+        <p>Complete breakdown of ProjectForge's powerful analysis tools</p>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="feature-detail">
+        <!-- EVM -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>Earned Value <span class="feature-highlight">Management</span></h2>
+                <p>Complete EVM analysis with all critical metrics calculated automatically from your P6 data.</p>
+                <p>Track project performance with CPI, SPI, TCPI, and EAC. Identify cost and schedule performance trends instantly.</p>
+                <ul class="feature-benefits">
+                    <li>CPI & SPI calculations</li>
+                    <li>Cumulative & periodic analysis</li>
+                    <li>Trend forecasting (linear, exponential)</li>
+                    <li>Budget-to-Complete (BTC) warnings</li>
+                    <li>VAC & SV variance reports</li>
+                    <li>Executive summary cards</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📈 EVM Dashboard Preview</div>
+        </div>
+
+        <!-- DCMA -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>DCMA 14-Point <span class="feature-highlight">Schedule Quality</span></h2>
+                <p>Industry-standard schedule audit built in. Find quality issues before they become problems.</p>
+                <p>Comprehensive assessment of schedule logic, constraints, resources, and compliance with best practices.</p>
+                <ul class="feature-benefits">
+                    <li>Logic gap detection</li>
+                    <li>Float anomaly identification</li>
+                    <li>BEI (Business Error Index) scoring</li>
+                    <li>Constraint abuse detection</li>
+                    <li>Resource leveling analysis</li>
+                    <li>14-point compliance report</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📋 DCMA Quality Audit</div>
+        </div>
+
+        <!-- RISK -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>Auto Risk <span class="feature-highlight">Detection</span></h2>
+                <p>Automatically identify risks hiding in your schedule. Don't wait for problems to surface.</p>
+                <p>Real-time analysis flags overdue activities, aggressive schedules, constraint violations, and bottlenecks.</p>
+                <ul class="feature-benefits">
+                    <li>Overdue activity flagging</li>
+                    <li>Aggressive schedule detection</li>
+                    <li>Constraint violation warnings</li>
+                    <li>Resource conflict identification</li>
+                    <li>Bottleneck analysis</li>
+                    <li>Risk prioritization & scoring</li>
+                </ul>
+            </div>
+            <div class="feature-visual">⚠️ Risk Register</div>
+        </div>
+
+        <!-- S-CURVE -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>S-Curve & Baseline <span class="feature-highlight">Comparison</span></h2>
+                <p>Visualize schedule performance against baseline. Compare actual vs planned execution instantly.</p>
+                <p>See where your project is ahead or behind. Identify scope creep and performance trends at a glance.</p>
+                <ul class="feature-benefits">
+                    <li>Planned vs Actual curves</li>
+                    <li>Baseline comparison overlay</li>
+                    <li>Period-over-period variance</li>
+                    <li>Cumulative progress tracking</li>
+                    <li>Schedule growth analysis</li>
+                    <li>Performance trend lines</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📊 S-Curve Analysis</div>
+        </div>
+
+        <!-- SCHEDULE REALISM -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>Schedule Realism <span class="feature-highlight">Check</span></h2>
+                <p>Is your schedule realistic? Check production rates against industry standards and benchmarks.</p>
+                <p>Identify which durations are aggressive, normal, or conservative. Flag unrealistic assumptions early.</p>
+                <ul class="feature-benefits">
+                    <li>Production rate analysis</li>
+                    <li>Industry standard comparison</li>
+                    <li>Aggression indicators</li>
+                    <li>Resource utilization check</li>
+                    <li>Duration sanity testing</li>
+                    <li>Benchmarking against norms</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📉 Schedule Realism</div>
+        </div>
+
+        <!-- EXPORT -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>Multi-Format <span class="feature-highlight">Export</span></h2>
+                <p>Download dashboards in the format that works best for your stakeholders and workflows.</p>
+                <p>HTML for sharing online, PDF for presentations, Excel for analysis and integration with other tools.</p>
+                <ul class="feature-benefits">
+                    <li>HTML dashboard (interactive)</li>
+                    <li>PDF reports (print-ready)</li>
+                    <li>Excel spreadsheets (analyzable)</li>
+                    <li>Custom branding options</li>
+                    <li>Scheduled automated exports</li>
+                    <li>Batch processing support</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📥 Export Options</div>
+        </div>
+
+        <!-- WEEKLY/MONTHLY -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <h2>Weekly & Monthly <span class="feature-highlight">Reports</span></h2>
+                <p>Automated report generation for status updates and stakeholder communication.</p>
+                <p>Pre-formatted templates for quick executive summaries, detailed analysis, and team updates.</p>
+                <ul class="feature-benefits">
+                    <li>Weekly status summaries</li>
+                    <li>Monthly performance reviews</li>
+                    <li>Executive one-pagers</li>
+                    <li>Team-specific dashboards</li>
+                    <li>Custom report scheduling</li>
+                    <li>Automated distribution</li>
+                </ul>
+            </div>
+            <div class="feature-visual">📄 Report Templates</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 ProjectForge. Built for project professionals, by project professionals.</p>
+    </footer>
+</body>
+</html>

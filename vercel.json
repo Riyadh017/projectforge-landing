@@ -1,6 +1,8 @@
 {
+  "version": 2,
   "rewrites": [
-    { "source": "/features", "destination": "/features.html" },
-    { "source": "/pricing", "destination": "/pricing.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/features", "destination": "/features.html" }
   ]
 }
